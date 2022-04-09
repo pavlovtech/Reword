@@ -61,9 +61,7 @@ app.post("/api/v1/translate", async (req, res, next) => {
 app.post("/api/v1/paraphrase", async (req, res, next) => {
   console.log(req);
 
-  var translation = await translateText(req.body.text, req.body.from, [
-    req.body.langs,
-  ]);
+  var translation = await translateText(req.body.text, req.body.from, req.body.langs);
 
   console.log("done");
 
