@@ -59,7 +59,7 @@ app.post("/api/v1/translate", async (req, res, next) => {
 });
 
 app.post("/api/v1/paraphrase", async (req, res, next) => {
-  console.log(req);
+  console.log('paraphrase', req.body.text, req.body.from, req.body.langs);
 
   var translation = await translateText(req.body.text, req.body.from, req.body.langs);
 
@@ -132,6 +132,7 @@ async function translateText(text, from, langs) {
     return currentText;
   } catch (ex) {
     await browser.close();
+    console.log(ex.message);
     throw new Error(ex.message);
   }
 }
