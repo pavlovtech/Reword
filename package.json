@@ -10,9 +10,10 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.3",
-    "puppeteer": "^13.4.0",
-    "puppeteer-extra-plugin-stealth": "^2.9.0",
-    "npm": "^8.6.0"
+    "npm": "^8.6.0",
+    "puppeteer": "^13.5.2",
+    "puppeteer-extra": "^3.2.3",
+    "puppeteer-extra-plugin-stealth": "^2.9.0"
   },
   "type": "module"
 }

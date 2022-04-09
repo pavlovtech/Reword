@@ -34,8 +34,8 @@ puppeteer.use(StealthPlugin());
 let app = express();
 app.use(express.json());
 
-app.listen(3001, () => {
-  console.log("Server running on port 3001");
+app.listen(3000, () => {
+  console.log("Server running on port 3000");
 });
 
 app.post("/api/v1/translations", async (req, res, next) => {
@@ -82,7 +82,11 @@ async function translateText(text, from, langs) {
 
   const browser = await puppeteer.launch({
     headless: true,
-    args: [`--proxy-server=${proxy.address}:${proxy.port}`],
+    args: [
+      '--disable-dev-shm-usage',
+      '--no-sandbox',
+      '--disable-setuid-sandbox',
+      `--proxy-server=${proxy.address}:${proxy.port}`],
   });
 
   try {
