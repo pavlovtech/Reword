@@ -38,20 +38,12 @@ app.listen(3000, () => {
   console.log("Server running on port 3000");
 });
 
-app.post("/api/v1/translations", async (req, res, next) => {
-  var translation = await translateText(req.body.text, req.body.from, [
-    req.body.to,
-  ]);
-
-  console.log("done");
-
-  res.send(translation);
-});
-
 app.post("/api/v1/translate", async (req, res, next) => {
-  var translation = await translateText(req.body.text, req.body.from, [
-    req.body.to,
-  ]);
+  let translation = await retryAsync(async () => {
+    return await translateText(req.body.text, req.body.from, [
+      req.body.to,
+    ])
+  });
 
   console.log("done");
 
@@ -59,9 +51,10 @@ app.post("/api/v1/translate", async (req, res, next) => {
 });
 
 app.post("/api/v1/paraphrase", async (req, res, next) => {
-  console.log('paraphrase', req.body.text, req.body.from, req.body.langs);
 
-  var translation = await translateText(req.body.text, req.body.from, req.body.langs);
+  let translation = await retryAsync(async () => {
+    return await translateText(req.body.text, req.body.from, req.body.langs);
+  });
 
   console.log("done");
 
@@ -141,4 +134,17 @@ function getRandomInt(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min) + min); //The maximum is exclusive and the minimum is inclusive
+}
+
+async function retryAsync(func, retryCount = 2) {
+  for (let i = 0; i <= retryCount; i++) {
+    try {
+      return await func();
+    } catch (error) {
+      if(i == 3) {
+        throw error;
+      }
+      console.log('retrying...')
+    }
+  }
 }
