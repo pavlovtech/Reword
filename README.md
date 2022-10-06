@@ -10,8 +10,10 @@ POST /api/v1/paraphrase
 
 Request format:
 
+```JSON
 {
   text: "Hello, World",
   from: "en",
   langs: ["ru", "es", "it"]
 }
+```
