@@ -6,14 +6,16 @@ Your text gets translated through the chain of specified languages and back to t
 
 # API
 
+```
 POST /api/v1/paraphrase
+```
 
 Request format:
 
-```JSON
+```Jsom
 {
-  text: "Hello, World",
-  from: "en",
-  langs: ["ru", "es", "it"]
+  "text": "Hello, World",
+  "from": "en",
+  "langs": ["ru", "es", "it"]
 }
 ```
