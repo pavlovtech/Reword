@@ -1,6 +1,6 @@
 # Reword
 
-Reword is an API that rewords your text to make it unique with the help of Google Translate and Puppeteer.
+Reword is an API that paraphrases your text to make it unique with the help of Google Translate and Puppeteer.
 
 Your text gets translated through the chain of specified languages and back to the original language thereby giving you the text with better uniqueness.
 
