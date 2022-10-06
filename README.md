@@ -12,7 +12,7 @@ POST /api/v1/paraphrase
 
 Request format:
 
-```Jsom
+```Json
 {
   "text": "Hello, World",
   "from": "en",
